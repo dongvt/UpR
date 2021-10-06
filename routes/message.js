@@ -2,7 +2,7 @@ const express = require('express');
 
 const messageController = require('../controllers/message');
 
-const router = express.router;
+const router = express.Router();
 
 router.put('/save',messageController.putSaveMessage);
-module.exports(router);
+module.exports = router;

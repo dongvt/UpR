@@ -7,6 +7,9 @@ const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
 const dotenv = require('dotenv').config();
 
+//Routes
+const messageRoutes = require('./routes/message'); 
+
 //Constant variables
 const MONGODB_URL = process.env.MONGODB_URL || process.env.MONGODB_LOCAL;
 const PORT = process.env.PORT || 3000;
@@ -22,9 +25,9 @@ const mongooseOptions = {
 
 const app = express();
 
+
 app.use(bodyParser.json());
 app.use(express.static(path.join(__dirname, 'public')));
-
 
 app.use((req,res,next) => {
     res.setHeader('Access-Control-Allow-Origin','*');
@@ -32,6 +35,8 @@ app.use((req,res,next) => {
     res.setHeader('Access-Control-Allow-Headers','Content-Type, Authorization');
     next();
 });
+
+app.use(messageRoutes);
 
 
 mongoose

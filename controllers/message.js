@@ -2,14 +2,14 @@ const Message = require('../models/message');
 
 //middlewares
 exports.putSaveMessage = (req,res,next) => {
-    const message = req.body.message;
+    const messageString = req.body.message;
     const lat =  req.body.lat;
     const lon =  req.body.lon;
 
     const message = new Message({
         lat: lat,
         lon: lon,
-        message: message
+        message: messageString
     });
 
     message.save().
