@@ -23,3 +23,22 @@ exports.putSaveMessage = (req,res,next) => {
     })
     
 }
+
+exports.postGetMessages = (req,res,next) => {
+    const lat =  req.body.lat;
+    const lon =  req.body.lon;
+
+    Message.find({
+        lat: lat,
+        lon: lon
+    }).
+    then(result => {
+        res.json({
+            messsages: result
+        });
+    })
+    .catch(err => {
+        console.log(err)
+        //Handle errors here
+    })
+}
